@@ -7,7 +7,7 @@ import { CiLogout } from "react-icons/ci";
 
 export default function Menu() {
   return (
-    <div className="bg-primary text-white flex flex-row order-2 h-20 w-screen md:h-screen md:w-20 md:flex-col md:order-1">
+    <div className="bg-primary text-white flex flex-row h-20 w-screen md:h-screen md:w-20 md:flex-col">
       <h1 className="ml-auto mt-8 mb-8 justify-center text-center md:ml-0">
         LOGO
       </h1>
