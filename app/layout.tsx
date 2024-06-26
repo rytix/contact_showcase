@@ -15,11 +15,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="flex flex-col h-screen w-screen md:flex-row">
-          <div className="order-2 md:order-1">
+        <div className="font-montserrat flex flex-col h-screen w-screen md:flex-row">
+          <div className="order-2 sticky bottom-0 md:order-1">
             <Menu />
           </div>
-          <div className="order-1 h-screen w-screen md:order-2">{children}</div>
+          <div className="order-1 w-screen overflow-scroll md:order-2">
+            {children}
+          </div>
         </div>
       </body>
     </html>

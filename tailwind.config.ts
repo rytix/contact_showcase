@@ -1,6 +1,8 @@
 import type { Config } from "tailwindcss";
 
-const config: Config = {
+const withMT = require("@material-tailwind/react/utils/withMT");
+
+const config: Config = withMT({
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -18,8 +20,14 @@ const config: Config = {
         "off-white": "#f9f9f9",
         "black-text": "#333333" 
       },
+      fontFamily: {
+        montserrat: ["Montserrat", "sans-serif"],
+      },
+      fontSize: {
+        'xss': '0.7rem',
+      }
     },
   },
   plugins: [],
-};
+});
 export default config;
