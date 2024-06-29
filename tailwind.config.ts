@@ -25,7 +25,17 @@ const config: Config = withMT({
       },
       fontSize: {
         'xss': '0.7rem',
-      }
+      },
+      width: {
+        '70': '17.5rem',
+        '82': '23rem', 
+      },
+      height: {
+        '100': '28rem',
+      },
+      screens: {
+        'smd': '360px',
+      },
     },
   },
   plugins: [],
