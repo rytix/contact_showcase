@@ -21,7 +21,7 @@ export default function RootLayout({
             <div className="order-2 sticky bottom-0 md:order-1">
               <Menu />
             </div>
-            <div className="order-1 w-screen h-full overflow-scroll md:order-2">
+            <div className="order-1 h-full w-screen overflow-scroll md:order-2">
               {children}
             </div>
           </div>
