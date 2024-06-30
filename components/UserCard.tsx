@@ -5,9 +5,20 @@ import SeeProfileBtn from "./SeeProfileBtn";
 interface PropsUserCard {
   status: boolean;
   dataCadastro?: string;
+  temGerente: boolean;
+  agenteResponsavel?: string;
+  nome: string;
+  quantidadeMensagens: number;
 }
 
-export default function UserCard({ status, dataCadastro }: PropsUserCard) {
+export default function UserCard({
+  status,
+  dataCadastro,
+  temGerente,
+  agenteResponsavel,
+  nome,
+  quantidadeMensagens,
+}: PropsUserCard) {
   return (
     <>
       <div className="shadow-xl rounded-md">
@@ -21,8 +32,14 @@ export default function UserCard({ status, dataCadastro }: PropsUserCard) {
           </div>
           <div className="flex flex-col order-2 h-3/5 pl-5 pr-5">
             <div className="flex flex-col h-1/3 w-full">
-              <h1 className="font-bold text-lg">Nome User</h1>
-              <h2 className="font-thin text-sm">Agente Responsavel</h2>
+              <h1 className="font-bold text-lg">{nome}</h1>
+              {temGerente && (
+                <>
+                  <h2 className="font-thin text-sm">
+                    Agente: {agenteResponsavel}
+                  </h2>
+                </>
+              )}
               <h3 className="font-thin text-sm">
                 Status: {status ? `Ativa desde ${dataCadastro}` : "Desativado"}
               </h3>
@@ -33,7 +50,9 @@ export default function UserCard({ status, dataCadastro }: PropsUserCard) {
                 <PeriodBtn className="w-24" />
                 <PeriodBtn className="w-24" />
               </div>
-              <h1 className="font-thin text-sm mt-2">182 Mensagens</h1>
+              <h1 className="font-thin text-sm mt-2">
+                {quantidadeMensagens} Mensagens
+              </h1>
               <h2 className="font-thin text-sm mt-2">
                 R$Preço * No de Mensagens
               </h2>
