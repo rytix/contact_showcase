@@ -21,7 +21,7 @@ const handler = NextAuth({
                 throw new Error('Please enter both username and password');
             }
 
-            //await createUserModel({username: "admin", password: bcrypt.hashSync("kkkk",15), type: "ADMIN"})
+            //await createUserModel({username: "admin", password: bcrypt.hashSync("12300",15), type: "ADMIN", enabled: true, name: "NOME DO USUARIO"})
             const user = await getUserModel().findOne({ username: credentials.username }).exec();
     
             if (!user) {

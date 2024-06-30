@@ -3,8 +3,24 @@ import MessageCard from "@/components/MessageCard";
 import PeriodBtn from "@/components/PeriodBtn";
 import PlusBtn from "@/components/PlusBtn";
 import UserInfo from "@/components/UserInfo";
+import {
+  findUserById,
+  getCurrentUser,
+  hasAccess,
+  thisUserCanSeeThatUser,
+} from "@/libs/UserService";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home({ params }: { params: { id: string } }) {
+  const currentUser = await getCurrentUser();
+  const idUser = await findUserById(params.id);
+  if (
+    !hasAccess(currentUser, "USER") ||
+    !thisUserCanSeeThatUser(currentUser, idUser)
+  ) {
+    redirect("/");
+  }
+
   return (
     <main className="flex justify-center font-montserrat">
       <div className="flex flex-col m-5 max-w-3xl">

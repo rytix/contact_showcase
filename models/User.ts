@@ -2,6 +2,7 @@ import DBConnection from "@/libs/DBConnection";
 import mongoose, { Schema, Document, Model } from "mongoose";
 
 export type IUser = {
+  id: string;
   username: string;
   password: string;
   type: "USER" | "MANAGER" | "ADMIN";
