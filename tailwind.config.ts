@@ -13,6 +13,8 @@ const config: Config = withMT({
       colors: {
         "primary": "#ff4b5c",
         "secondary": "#ffb6c1",
+        "dark-green": "#007800",
+        "light-green": "#00F1AD",
         "accent": "#ff8c94",
         "success": "#4caf50",
         "fail": "#f44336",
