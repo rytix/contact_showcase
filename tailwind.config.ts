@@ -15,6 +15,7 @@ const config: Config = withMT({
         "secondary": "#ffb6c1",
         "dark-green": "#007800",
         "light-green": "#00F1AD",
+        "middle-green": "#CAEFBB",
         "accent": "#ff8c94",
         "success": "#4caf50",
         "fail": "#f44336",

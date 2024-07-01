@@ -1,7 +1,14 @@
-export default function LargePreview() {
+interface PropsLargePreview {
+  className?: string;
+}
+export default function LargePreview({
+  className = "h-100 w-82 md:w-70 lg:w-82",
+}: PropsLargePreview) {
   return (
     <>
-      <div className="h-100 w-82 md:w-70 lg:w-82 shadow-xl rounded-md overflow-hidden mt-5 mr-2 ml-2">
+      <div
+        className={`${className} shadow-xl rounded-md overflow-hidden mt-5 mr-2 ml-2`}
+      >
         <img
           src="https://picsum.photos/200/300"
           alt="img 1"
