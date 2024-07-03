@@ -3,21 +3,13 @@ import ManagerInfo from "@/components/ManagerInfo";
 import CreateUserBtn from "@/components/CreateUserBtn";
 import Search from "@/components/Search";
 import UserCard from "@/components/UserCard";
-import {
-  getCurrentUser,
-  findUserById,
-  hasAccess,
-  thisUserCanSeeThatUser,
-} from "@/libs/UserService";
+import { getCurrentUser, findUserById, hasAccess } from "@/libs/UserService";
 import { redirect } from "next/navigation";
 
 export default async function Home({ params }: { params: { id: string } }) {
   const currentUser = await getCurrentUser();
   const idUser = await findUserById(params.id);
-  if (
-    !hasAccess(currentUser, "MANAGER") ||
-    !thisUserCanSeeThatUser(currentUser, idUser)
-  ) {
+  if (!hasAccess(currentUser, idUser, "MANAGER")) {
     redirect("/");
   }
 

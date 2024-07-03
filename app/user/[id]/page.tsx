@@ -3,21 +3,15 @@ import MessageCard from "@/components/MessageCard";
 import PeriodBtn from "@/components/PeriodBtn";
 import PlusBtn from "@/components/PlusBtn";
 import UserInfo from "@/components/UserInfo";
-import {
-  findUserById,
-  getCurrentUser,
-  hasAccess,
-  thisUserCanSeeThatUser,
-} from "@/libs/UserService";
+import { findUserById, getCurrentUser, hasAccess } from "@/libs/UserService";
 import { redirect } from "next/navigation";
+import UserMedias from "./UserMedias";
 
 export default async function Home({ params }: { params: { id: string } }) {
   const currentUser = await getCurrentUser();
   const idUser = await findUserById(params.id);
-  if (
-    !hasAccess(currentUser, "USER") ||
-    !thisUserCanSeeThatUser(currentUser, idUser)
-  ) {
+
+  if (!hasAccess(currentUser, idUser, "USER")) {
     redirect("/");
   }
 
@@ -28,9 +22,12 @@ export default async function Home({ params }: { params: { id: string } }) {
           <UserInfo status={true} dataCadastro="10/10/2024" />
         </div>
         <div className="flex flex-row flex-wrap justify-center md:justify-between">
-          <LargePreview />
-          <LargePreview />
-          <PlusBtn canSendVideo={true} />
+          <UserMedias
+            userId={params.id}
+            serverUploadedImagesUrls={[
+              ...(idUser?.images ? idUser?.images : []),
+            ]}
+          />
         </div>
         <div className="flex justify-center mt-10 mb-10">
           <div className="flex flex-col w-82">

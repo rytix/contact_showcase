@@ -20,45 +20,39 @@ const findUserById = async function(id: string) {
     }
 }
 
-const hasAccess = (user: User, minimumUserType : UserType) => {
-    user?.creator_id
-    if(!user) {
+const hasAccess = (currentUser: User, targetUser: User, pageType : UserType) => {
+    currentUser?.creator_id
+    if(!currentUser || !targetUser) {
         return false;
     }
 
-    if(user.type == "ADMIN") {
-        return true;
-    }
-
-    if(user.type == "MANAGER" && (minimumUserType == "USER" || minimumUserType == "MANAGER")) {
-        return true;
-    }
-
-    if(user.type == "USER" && minimumUserType == "USER") {
-        return true;
-    }
-
-    return false;
-}
-
-const thisUserCanSeeThatUser = (thisUser: User, thatUser: User) => {
-    if(!thisUser || !thatUser) {
+    if(targetUser.type != pageType) {
         return false;
     }
 
-    if(thisUser.type == "ADMIN") {
-        return true;
+    if(currentUser.type != "ADMIN" && currentUser.type != "MANAGER" && currentUser.type != "USER") {
+        return false;
     }
 
-    if(thisUser.id == thatUser?.id) {
-        return true;
+    if(currentUser.type == "USER") {
+        if(currentUser.id != targetUser.id) {
+            return false;
+        }
+        if(pageType == "ADMIN" || pageType == "MANAGER") {
+            return false;
+        }
     }
 
-    if(thisUser.id == thatUser.creator_id) {
-        return true;
+    if(currentUser.type == "MANAGER") {
+        if(currentUser.id != targetUser.id && targetUser.creator_id != currentUser.id) {
+            return false;
+        }
+        if(pageType == "ADMIN") {
+            return false;
+        }
     }
 
-    return false;
+    return true;
 }
 
-export {getCurrentUser, findUserById, hasAccess, thisUserCanSeeThatUser};
+export {getCurrentUser, findUserById, hasAccess};

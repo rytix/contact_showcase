@@ -1,19 +1,11 @@
-import {
-  findUserById,
-  getCurrentUser,
-  hasAccess,
-  thisUserCanSeeThatUser,
-} from "@/libs/UserService";
+import { findUserById, getCurrentUser, hasAccess } from "@/libs/UserService";
 import UserSearch from "./UserSearch";
 import { redirect } from "next/navigation";
 
 export default async function Home({ params }: { params: { id: string } }) {
   const currentUser = await getCurrentUser();
   const idUser = await findUserById(params.id);
-  if (
-    !hasAccess(currentUser, "ADMIN") ||
-    !thisUserCanSeeThatUser(currentUser, idUser)
-  ) {
+  if (!hasAccess(currentUser, idUser, "ADMIN")) {
     redirect("/");
   }
 
