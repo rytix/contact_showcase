@@ -4,8 +4,13 @@ import MessageBtn from "./MessageBtn";
 import Heart from "./HeartBtn";
 import PlayBtn from "./PlayBtn";
 import { Carousel } from "@material-tailwind/react";
+import Image from "next/image";
 
-export default function Card() {
+export default function Card({
+  imagesUrl,
+}: {
+  imagesUrl: string[] | undefined;
+}) {
   return (
     <>
       <div className="shadow-xl ml-2 mr-2">
@@ -16,21 +21,30 @@ export default function Card() {
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
             >
-              <img
-                src="https://picsum.photos/200/300"
-                alt="img 1"
-                className="h-full w-full object-cover"
-              />
-              <img
-                src="https://picsum.photos/200/300"
-                alt="img 2"
-                className="h-full w-full object-cover"
-              />
-              <img
-                src="https://picsum.photos/200/300"
-                alt="img 3"
-                className="h-full w-full object-cover"
-              />
+              {imagesUrl &&
+                imagesUrl.map((image, index) => {
+                  if (image) {
+                    return index < 3 ? (
+                      <Image
+                        className="h-full w-full object-cover"
+                        key={index}
+                        src={image}
+                        alt=""
+                        width={400}
+                        height={200}
+                      />
+                    ) : (
+                      <video
+                        src={image}
+                        className="h-full w-full object-cover"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                      />
+                    );
+                  }
+                })}
             </Carousel>
           </div>
           <div className="flex flex-row order-2 h-12 items-center">

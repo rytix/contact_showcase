@@ -2,6 +2,7 @@ import { FaCircleCheck } from "react-icons/fa6";
 import LargePreview from "./LargePreview";
 import PaymentBtn from "./PaymentBtn";
 import { useState } from "react";
+import Image from "next/image";
 
 interface PropsPaymentModal {
   nome: string;
@@ -12,14 +13,11 @@ export default function PaymentModal({ nome }: PropsPaymentModal) {
   return (
     <div className="flex flex-row h-full w-full">
       <div className="order-1 flex flex-row flex-wrap justify-center 3xl:justify-between h-full w-1/2 md:w-2/3 overflow-scroll">
-        <LargePreview className="h-64 w-full md:h-[22rem] md:w-80 lg:w-72" />
-        <LargePreview className="h-64 w-full md:h-[22rem] md:w-80 lg:w-72" />
-        <LargePreview className="h-64 w-full md:h-[22rem] md:w-80 lg:w-72" />
-        <LargePreview className="h-64 w-full md:h-[22rem] md:w-80 lg:w-72" />
+        ...
       </div>
       <div className="order-2 flex flex-col h-full w-1/2 md:w-1/3 p-5 sm:p-10 overflow-scroll">
         <div className="w-full flex flex-col justify-center items-center">
-          <img
+          <Image
             src="https://picsum.photos/200/300"
             alt="img 1"
             className="size-24 sm:size-40 md:size-32 lg:size-40 object-cover rounded-full shadow-xl"
@@ -59,7 +57,7 @@ export default function PaymentModal({ nome }: PropsPaymentModal) {
                       <h1 className="font-bold text-sm text-success mb-4">
                         Pagar com PIX
                       </h1>
-                      <img
+                      <Image
                         src="https://picsum.photos/200/200"
                         alt="img 1"
                         className="size-40 object-cover shadow-xl"

@@ -1,6 +1,7 @@
 import DisableUserBtn from "./DisableUserBtn";
 import PeriodBtn from "./PeriodBtn";
 import SeeProfileBtn from "./SeeProfileBtn";
+import Image from "next/image";
 
 interface PropsUserCard {
   status: boolean;
@@ -24,7 +25,7 @@ export default function UserCard({
       <div className="shadow-xl rounded-md">
         <div className="flex flex-col h-96 w-72 sm:w-64 mt-5">
           <div className="order-1 h-2/5 flex justify-center">
-            <img
+            <Image
               src="https://picsum.photos/200/200"
               alt="avatar photo"
               className="size-36 rounded-full shadow-xl"
