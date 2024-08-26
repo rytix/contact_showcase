@@ -7,14 +7,19 @@ import { useState } from "react";
 export default function UserMedias({
   userId,
   serverUploadedImagesUrls,
+  serverUploadedVideoUrl,
 }: {
   userId: string;
   serverUploadedImagesUrls: string[];
+  serverUploadedVideoUrl: string | undefined;
 }) {
   const [files, setFiles] = useState<(File | null)[]>([]);
   const [previewMedias, setPreviewMedias] = useState<(string | null)[]>([]);
   const [uploadedMedias, setUploadedMedias] = useState<(string | null)[]>([
-    ...serverUploadedImagesUrls,
+    serverUploadedImagesUrls[0],
+    serverUploadedImagesUrls[1],
+    serverUploadedImagesUrls[2],
+    serverUploadedVideoUrl ?? null,
   ]);
   const getFileChangeHandler = (pos: number) => {
     return (event: React.ChangeEvent<HTMLInputElement>) => {

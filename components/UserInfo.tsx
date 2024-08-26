@@ -16,6 +16,8 @@ export default function UserInfo({ status, dataCadastro }: PropsUserInfo) {
               src="https://picsum.photos/200/200"
               alt="avatar photo"
               className="size-36 rounded-full shadow-xl"
+              width={200}
+              height={200}
             />
           </div>
           <div className="order-2 h-2/3 w-full sm:h-full sm:w-82 sm:justify-normal flex flex-col justify-">

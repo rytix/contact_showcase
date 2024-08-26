@@ -27,6 +27,7 @@ export default async function Home({ params }: { params: { id: string } }) {
             serverUploadedImagesUrls={[
               ...(idUser?.images ? idUser?.images : []),
             ]}
+            serverUploadedVideoUrl={idUser?.video}
           />
         </div>
         <div className="flex justify-center mt-10 mb-10">

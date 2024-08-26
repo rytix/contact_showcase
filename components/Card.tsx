@@ -6,10 +6,19 @@ import PlayBtn from "./PlayBtn";
 import { Carousel } from "@material-tailwind/react";
 import Image from "next/image";
 
+type UserData = {
+  id: string;
+  images: string[];
+  video?: string;
+  name: string;
+};
+
 export default function Card({
-  imagesUrl,
+  cardUser,
+  setUserData,
 }: {
-  imagesUrl: string[] | undefined;
+  cardUser: UserData;
+  setUserData: (userData: UserData) => void;
 }) {
   return (
     <>
@@ -21,8 +30,8 @@ export default function Card({
               onPointerEnterCapture={() => {}}
               onPointerLeaveCapture={() => {}}
             >
-              {imagesUrl &&
-                imagesUrl.map((image, index) => {
+              {cardUser.images &&
+                cardUser.images.map((image, index) => {
                   if (image) {
                     return index < 3 ? (
                       <Image
@@ -50,7 +59,11 @@ export default function Card({
           <div className="flex flex-row order-2 h-12 items-center">
             <Heart className="ml-2 flex" />
             <PlayBtn className="ml-2 mr-2 flex" />
-            <MessageBtn className="flex-grow mr-2" nome="teste" />
+            <MessageBtn
+              className="flex-grow mr-2"
+              cardUser={cardUser}
+              setUserData={setUserData}
+            />
           </div>
         </div>
       </div>

@@ -36,7 +36,8 @@ const POST = async (request: NextRequest) => {
   fs.writeFileSync(filePath, buffer);
   const images = [...idUser.images ? idUser.images : []]
   images[pos] = `/uploads/${fileName}`;
-  idUser.images = images;
+  idUser.images = [images[0], images[1], images[2]];
+  idUser.video = images[3];
   idUser.save();
   return NextResponse.json({ url: images[pos] }, { status: 200 });
 }

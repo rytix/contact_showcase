@@ -1,7 +1,12 @@
-import Card from "@/components/Card";
-import Preview from "@/components/Preview";
-import Search from "@/components/Search";
 import { getUserModel, IUser } from "@/models/User";
+import Content from "./Content";
+
+type UserData = {
+  id: string;
+  images: string[];
+  video?: string;
+  name: string;
+} | null;
 
 export default async function Home() {
   const allUsersRandom = await (async () => {
@@ -33,32 +38,20 @@ export default async function Home() {
 
   return (
     <main className="flex justify-center">
-      <div className="flex flex-col m-5 max-w-4xl">
-        <Search />
-        <div className="flex flex-row justify-center mt-5">
-          {allUsersRandom6?.map((user, index) => {
-            if (user?.images) {
-              return index < 4 ? (
-                <div key={user.id ?? index}>
-                  <Preview imageUrl={user.images[0]} />
-                </div>
-              ) : (
-                <div key={user.id ?? index} className="hidden sm:block">
-                  <Preview imageUrl={user.images[0]} />
-                </div>
-              );
-            }
-          })}
-        </div>
-        <h1 className="flex justify-center mt-5 text-sm">
-          <b>Com quem você quer conversar hoje?</b>
-        </h1>
-        <div className="flex flex-row flex-wrap justify-around text-white">
-          {allUsersRandom?.map((user, index) => {
-            return <Card key={user.id ?? index} imagesUrl={user.images} />;
-          })}
-        </div>
-      </div>
+      <Content
+        allUsersRandom={allUsersRandom?.map((user) => ({
+          id: user.id,
+          images: user.images || [],
+          name: user.name,
+          video: user.video,
+        }))}
+        allUsersRandom6={allUsersRandom6?.map((user) => ({
+          id: user.id,
+          images: user.images || [],
+          name: user.name,
+          video: user.video,
+        }))}
+      />
     </main>
   );
 }
